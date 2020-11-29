@@ -1,14 +1,13 @@
 {
-  "name": "p5-typescript-starter",
+  "name": "04-perlin",
   "version": "1.0.0",
-  "description": "Project to quickly get something working in [p5.js](https://p5js.org/) and [typescript](https://www.typescriptlang.org/)",
+  "description": "Part 4: Perlin noise",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "run-p build serve",
     "build": "tsc --watch",
     "serve": "browser-sync start --server -w"
   },
-  "homepage": "https://github.com/Gaweph/p5-typescript-starter#readme",
   "devDependencies": {
     "@types/p5": "^0.9.1",
     "browser-sync": "^2.26.13",

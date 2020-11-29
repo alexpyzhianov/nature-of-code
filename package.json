@@ -1,0 +1,9 @@
+{
+  "name": "nature-of-code",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "examples/*"
+  ],
+  "description": "Nature of code examples and more"
+}
