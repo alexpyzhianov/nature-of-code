@@ -1,22 +1,65 @@
-export type Vec2 = [number, number];
-export type Vec3 = [number, number, number];
-export type AnyVec = Vec2 | Vec3;
+import { mat3, mat4, vec3 } from "gl-matrix";
 
-export type Mat3 = [Vec3, Vec3, Vec3];
-
-export function addVecToVec<Vec extends AnyVec>(a: Vec, b: Vec): Vec {
-    return a.map((value, i) => value + b[i]) as Vec;
+export function getTranslationMatrix(x: number, y: number) {
+    return mat4.fromValues(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x, y, 0, 1);
 }
 
-export function multiplyVecByScalar<Vec extends AnyVec>(
-    scalar: number,
-    vec: Vec,
-): Vec {
-    return vec.map((component) => component * scalar) as Vec;
+export function getScaleMatrix(scale: number) {
+    return mat3.fromValues(scale, 0, 0, 0, scale, 0, 0, 0, scale);
 }
 
-export function multiplyVec3ByMat3(mat3: Mat3, vec3: Vec3): Vec3 {
-    return mat3
-        .map((matVec, i) => multiplyVecByScalar(vec3[i], matVec))
-        .reduce(addVecToVec) as Vec3;
+export function getXRotationMatrix(rad: number) {
+    return mat3.fromValues(
+        1,
+        0,
+        0,
+        0,
+        Math.cos(rad),
+        Math.sin(rad),
+        0,
+        -Math.sin(rad),
+        Math.cos(rad),
+    );
+}
+
+export function getYRotationMatrix(rad: number) {
+    return mat3.fromValues(
+        Math.cos(rad),
+        0,
+        -Math.sin(rad),
+        0,
+        1,
+        0,
+        Math.sin(rad),
+        0,
+        Math.cos(rad),
+    );
+}
+
+export function getZRotationMatrix(rad: number) {
+    return mat3.fromValues(
+        Math.cos(rad),
+        Math.sin(rad),
+        0,
+        -Math.sin(rad),
+        Math.cos(rad),
+        0,
+        0,
+        0,
+        1,
+    );
+}
+
+export function getCubeGeometry(extent: number, density: number) {
+    const geometry = [];
+
+    for (let x = -extent; x < extent; x += density) {
+        for (let y = -extent; y < extent; y += density) {
+            for (let z = -extent; z < extent; z += density) {
+                geometry.push(vec3.fromValues(x, y, z));
+            }
+        }
+    }
+
+    return geometry;
 }

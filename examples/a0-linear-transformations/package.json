@@ -1,7 +1,7 @@
 {
   "name": "a0-linear-transformations",
   "version": "1.0.0",
-  "description": "Bonus: Transformations from linear algebra",
+  "description": "Bonus: Linear algebra and noise",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
@@ -17,7 +17,9 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@math.gl/core": "^3.3.1",
-    "p5": "^1.1.9"
+    "@math.gl/core": "^3.3.2",
+    "gl-matrix": "^3.3.0",
+    "p5": "^1.1.9",
+    "simplex-noise": "^2.4.0"
   }
 }

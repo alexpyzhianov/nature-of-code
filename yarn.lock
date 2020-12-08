@@ -9,10 +9,10 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@math.gl/core@^3.3.1":
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/@math.gl/core/-/core-3.3.1.tgz#35cd65c76aa4e2d7c7434d5590e8a265ddd66a1e"
-  integrity sha512-rO4Smhqe3NrDUjZ3HyRv/3igPodw3qY5UtK7Zdr966ixysalE/9PRNwJFi7e4U+I5xa7pJHcEUekzO+GyNuF1Q==
+"@math.gl/core@^3.3.2":
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/@math.gl/core/-/core-3.3.2.tgz#5ab38984c61a49e6c38671253f5b90b8a3ab784e"
+  integrity sha512-W0QoVrdjiLs52ivtozrHbCitqWGNsWi4TwdfBckhOaeB5cE/R/pyOXfvLmdwGj2b1TLSg8SwgZLlmkWG776GKw==
   dependencies:
     "@babel/runtime" "^7.0.0"
     gl-matrix "^3.0.0"
@@ -1686,7 +1686,7 @@ get-value@^2.0.3, get-value@^2.0.6:
   resolved "https://registry.yarnpkg.com/get-value/-/get-value-2.0.6.tgz#dc15ca1c672387ca76bd37ac0a395ba2042a2c28"
   integrity sha1-3BXKHGcjh8p2vTesCjlbogQqLCg=
 
-gl-matrix@^3.0.0:
+gl-matrix@^3.0.0, gl-matrix@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/gl-matrix/-/gl-matrix-3.3.0.tgz#232eef60b1c8b30a28cbbe75b2caf6c48fd6358b"
   integrity sha512-COb7LDz+SXaHtl/h4LeaFcNdJdAQSDeVqjiIihSXNrkWObZLhDI4hIkZC11Aeqp7bcE72clzB0BnDXr2SmslRA==
@@ -2923,6 +2923,11 @@ path-type@^3.0.0:
   dependencies:
     pify "^3.0.0"
 
+perlin-noise-3d@^0.5.4:
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/perlin-noise-3d/-/perlin-noise-3d-0.5.4.tgz#884080e6e5fe0dd5dcdf66f4f8c334b50f948ace"
+  integrity sha512-4BbwqQ/e8HjumsaiWSemu9FggqbbX4NeEtLaWvK3554YcnqmK6APtOAAqZ9xT8lFdKCGYgpUPAhaPOHCJuvEyw==
+
 picomatch@^2.0.4, picomatch@^2.0.5, picomatch@^2.2.1:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.2.2.tgz#21f333e9b6b8eaff02468f5146ea406d345f4dad"
@@ -3471,6 +3476,11 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.3.tgz#a1410c2edd8f077b08b4e253c8eacfcaf057461c"
   integrity sha512-VUJ49FC8U1OxwZLxIbTTrDvLnf/6TDgxZcK8wxR8zs13xpx7xbG60ndBlhNrFi2EMuFRoeDoJO7wthSLq42EjA==
+
+simplex-noise@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/simplex-noise/-/simplex-noise-2.4.0.tgz#81b3458fb22dccc3bc8dd9a977c73797f86f523a"
+  integrity sha512-OjyDWm/QZjVbMrPxDVi9b2as+SeNn9EBXlrWVRlFW+TSyWMSXouDryXkQN0vf5YP+QZKobrmkvx1eQYPLtuqfw==
 
 snapdragon-node@^2.0.1:
   version "2.1.1"

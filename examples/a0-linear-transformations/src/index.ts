@@ -1,58 +1,60 @@
 import P5 from "p5";
+import { vec3, glMatrix } from "gl-matrix";
+import Simplex from "simplex-noise";
 import {
-    addVecToVec,
-    multiplyVec3ByMat3,
-    multiplyVecByScalar,
-    Vec3,
-    Mat3,
+    getCubeGeometry,
+    getScaleMatrix,
+    getTranslationMatrix,
+    getXRotationMatrix,
+    getYRotationMatrix,
+    getZRotationMatrix,
 } from "./math";
-import { compose } from "./utils";
 
-function getGeometry(): Vec3[] {
-    const geometry = [];
-
-    for (let x = -1; x < 1; x += 0.2) {
-        for (let y = -1; y < 1; y += 0.2) {
-            for (let z = -1; z < 1; z += 0.2) {
-                geometry.push([x, y, z] as Vec3);
-            }
-        }
-    }
-
-    return geometry;
-}
+glMatrix.setMatrixArrayType(Array);
+const noise = new Simplex();
 
 const sketch = (p: P5) => {
     const canvasWidth = p.windowWidth;
     const canvasHeight = p.windowHeight;
-    const geometry = getGeometry();
+    let time = 0.5;
 
     p.setup = function () {
         p.createCanvas(canvasWidth, canvasHeight);
         p.background(0);
         p.fill(255);
+        p.colorMode(p.HSB, 255);
     };
 
     p.draw = function () {
+        time += 0.01;
+        const geometry = getCubeGeometry(0.5, 0.1);
+
         p.background(0);
 
-        const t = ((2 * Math.PI) / 200) * (p.frameCount % 200);
-        const view = [
-            [Math.cos(t), 0, 0],
-            [0, 1, 0],
-            [0, 0, Math.cos(2 * Math.PI - t)],
-        ] as Mat3;
+        geometry.forEach((v) => {
+            const noiseValue = noise.noise4D(
+                v[0] * 0.8,
+                v[1] * 0.8,
+                v[2] * 0.8,
+                time * 1.5,
+            );
 
-        geometry.forEach((vertex) => {
-            const [x, y] = compose(
-                multiplyVecByScalar.bind(null, canvasHeight / 20),
-                addVecToVec.bind(null, [4, 4, 0]),
-                (v: Vec3) => multiplyVecByScalar(1 / v[2], [v[0], v[1]]),
-                multiplyVec3ByMat3.bind(null, view),
-            )(vertex);
+            vec3.transformMat3(v, v, getXRotationMatrix(0.5));
+            vec3.transformMat3(v, v, getYRotationMatrix(time / 6));
+            vec3.transformMat3(v, v, getZRotationMatrix(0.5));
+            vec3.transformMat3(v, v, getScaleMatrix(500));
+            vec3.transformMat4(
+                v,
+                v,
+                getTranslationMatrix(canvasWidth / 2, canvasHeight / 2),
+            );
 
-            p.circle(x, y, 4);
+            p.fill(0, 0, 255, noiseValue * 255 + 40);
+
+            p.circle(v[0], v[1], 8);
         });
+
+        p.fill(255);
     };
 };
 
