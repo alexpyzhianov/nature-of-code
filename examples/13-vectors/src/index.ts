@@ -6,7 +6,7 @@ const sketch = (p: P5) => {
     const canvasWidth = p.windowWidth;
     const canvasHeight = p.windowHeight;
     const pigAnimation: P5.Image[] = [];
-    const pigPosition = p.createVector(canvasWidth / 2, canvasHeight / 2);
+    const pigPosition = p.createVector(p.mouseX, p.mouseY);
     const pigWidth = 160;
     let frame = 0;
 
@@ -28,6 +28,7 @@ const sketch = (p: P5) => {
         const mousePosition = p
             .createVector(p.mouseX, p.mouseY)
             .sub(pigWidth / 2, pigWidth / 2);
+
         const delta = mousePosition.copy().sub(pigPosition).div(50);
 
         if (delta.mag() < 0.75) {
