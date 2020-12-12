@@ -16,15 +16,16 @@ const sketch = (p: P5) => {
                 p.random(cy - 200, cy + 200),
             ),
             speed: p.createVector(0, 0),
-            flap: p.random(1, 10),
-            flapDirection: 1,
+            angle: 0,
+            rotationSpeed: 0,
+            flap: p.random(0, 180),
         };
     }
 
     function drawBird(
+        size: number,
         x: number,
         y: number,
-        size: number,
         angle: number,
         flap = 0,
     ) {
@@ -37,7 +38,7 @@ const sketch = (p: P5) => {
         p.line(x, y, x4, y4);
     }
 
-    const birds = new Array(150).fill(undefined).map(createBird);
+    const birds = new Array(200).fill(undefined).map(createBird);
 
     p.setup = function () {
         p.createCanvas(canvasWidth, canvasHeight);
@@ -47,26 +48,26 @@ const sketch = (p: P5) => {
     };
 
     p.draw = function () {
-        p.background(0, 150);
+        p.background(0, 200);
         const mousePosition = p.createVector(p.mouseX, p.mouseY);
 
-        birds.forEach((bird, i) => {
+        birds.forEach((bird) => {
             const delta = mousePosition.copy().sub(bird.position);
             const direction = delta.copy().normalize();
-            const acceleration = direction.copy().mult(p.random(0, 0.04));
-            const angle = 180 - delta.angleBetween(initialBirdDirection);
+            const acceleration = direction.copy().mult(p.random(0, 0.02));
+            const targetAngle = 180 - delta.angleBetween(initialBirdDirection);
 
             bird.position.add(bird.speed.add(acceleration));
+            bird.angle += bird.angle < targetAngle ? 1 : -1;
+            bird.flap = bird.flap + Math.min(10, 10 / bird.speed.mag() + 2);
 
-            // weird but beautiful
-            // bird.flap += 10;
-            bird.flap += (p.noise(i, p.millis()) * 10 + 5) * bird.flapDirection;
-            bird.flapDirection *= bird.flap <= -45 || bird.flap >= 45 ? -1 : 1;
-
-            // weird but beautiful
-            // drawBird(bird.position.x, bird.position.y, 12, p.random(0, 360));
-
-            drawBird(bird.position.x, bird.position.y, 12, angle, bird.flap);
+            drawBird(
+                12,
+                bird.position.x,
+                bird.position.y,
+                bird.angle,
+                bird.flap,
+            );
         });
     };
 };
