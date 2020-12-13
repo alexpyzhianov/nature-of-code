@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Mock a phrase</title>
+    </head>
+
+    <body>
+        <style>
+            * {
+                padding: 0px;
+                margin: 0px;
+            }
+        </style>
+
+        <main>
+            <section>
+                <form>
+                    <label for="phrase-input">Phrase to mock</label>
+                    <input
+                        id="phrase-input"
+                        type="text"
+                        value="How to save a life"
+                        onClick="this.select();"
+                    />
+
+                    <label for="from-word-input">From word</label>
+                    <input
+                        id="from-word-input"
+                        type="number"
+                        value="3"
+                        onClick="this.select();"
+                    />
+                </form>
+            </section>
+
+            <section>
+                <ul id="phrases-container">
+                    <li id="status">Loading...</p>
+                </ul>
+            </section>
+        </main>
+
+        <script src="bundle.js"></script>
+    </body>
+</html>
